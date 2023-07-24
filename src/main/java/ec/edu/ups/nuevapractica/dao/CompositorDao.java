@@ -13,7 +13,7 @@ import java.util.List;
 
 public class CompositorDao implements ICompositorDao {
 
-    private final String FILE_PATH = "compositores.bin"; // Ruta del archivo binario
+    private final String FILE_PATH = "src\\test\\java\\RutaDinamica\\nombrearchivo.dat"; // Ruta del archivo binario
 
     @Override
     public void create(Compositor compositor) {

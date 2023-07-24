@@ -281,7 +281,7 @@ public class EliminarCompositor extends javax.swing.JInternalFrame {
     private void btnEliminarCompositorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarCompositorActionPerformed
         int respuesta=JOptionPane.showConfirmDialog(this, "¿Estas seguro que deseas eliminar el cantante? \n Nombre : "+txtNombre.getText()+"\n ID : "+ txtId.getText());
         if (respuesta==JOptionPane.YES_OPTION) {
-            controladorCompositor.eliminarCompositor(controladorCompositor.buscarCompositor(Integer.parseInt(txtId.getText())));
+            controladorCompositor.elimininarCompo(controladorCompositor.buscarCompositor(Integer.parseInt(txtId.getText())));
             JOptionPane.showMessageDialog(this, "El cantante a sido eliminado con existo ");
             txtId.setText("");
             this.limpiarCampos();

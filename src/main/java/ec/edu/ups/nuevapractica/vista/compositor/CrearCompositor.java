@@ -5,12 +5,12 @@ import javax.swing.JOptionPane;
 
 public class CrearCompositor extends javax.swing.JInternalFrame {
     private ControladorCompositor controladorCompositor;
-
     /**
      * Creates new form CrearCompositor
      */
     public CrearCompositor(ControladorCompositor controladorCompositor) {
         initComponents();
+        
         this.controladorCompositor = controladorCompositor;
     }
 
@@ -260,6 +260,7 @@ public class CrearCompositor extends javax.swing.JInternalFrame {
         this.setVisible(false); 
     }//GEN-LAST:event_btnCancelarActionPerformed
 
+    
     
     private boolean validacionDeCampos(){
         if (txtId.getText().isEmpty()||txtNombre.getText().isEmpty()||txtApellido.getText().isEmpty()||txtEdad.getText().isEmpty()||txtNacionalidad.getText().isEmpty()

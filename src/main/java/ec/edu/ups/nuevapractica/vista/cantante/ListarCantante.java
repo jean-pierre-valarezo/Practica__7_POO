@@ -37,6 +37,24 @@ public class ListarCantante extends javax.swing.JInternalFrame {
         tblCanatntes = new javax.swing.JTable();
         bntSalir = new javax.swing.JToggleButton();
 
+        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+                formInternalFrameActivated(evt);
+            }
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+            }
+        });
+
         jPanel1.setBackground(new java.awt.Color(153, 153, 153));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "LISTA DE CANTANTES", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
 
@@ -107,6 +125,10 @@ public class ListarCantante extends javax.swing.JInternalFrame {
     private void bntSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntSalirActionPerformed
     this.setVisible(false);
     }//GEN-LAST:event_bntSalirActionPerformed
+
+    private void formInternalFrameActivated(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameActivated
+        this.actualizarTabla();
+    }//GEN-LAST:event_formInternalFrameActivated
     private void actualizarTabla(){
         DefaultTableModel modelo = (DefaultTableModel)this.tblCanatntes.getModel();
         modelo.setNumRows(0);
