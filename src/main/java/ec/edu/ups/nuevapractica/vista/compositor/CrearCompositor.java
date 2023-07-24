@@ -1,10 +1,12 @@
 package ec.edu.ups.nuevapractica.vista.compositor;
 import ec.edu.ups.nuevapractica.controlador.ControladorCompositor;
+import ec.edu.ups.nuevapractica.idao.ICompositorDao;
 import ec.edu.ups.nuevapractica.modelo.Compositor;
 import javax.swing.JOptionPane;
 
 public class CrearCompositor extends javax.swing.JInternalFrame {
     private ControladorCompositor controladorCompositor;
+    private ICompositorDao compositorDao;
     /**
      * Creates new form CrearCompositor
      */
@@ -12,8 +14,9 @@ public class CrearCompositor extends javax.swing.JInternalFrame {
         initComponents();
         
         this.controladorCompositor = controladorCompositor;
+        this.compositorDao = compositorDao;
     }
-
+     
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -231,28 +234,28 @@ public class CrearCompositor extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtNumeroComposicionesActionPerformed
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
-        if (this.validacionDeCampos()) {
-            int id = Integer.parseInt(txtId.getText());
-            if(controladorCompositor.buscarCompositor(id)==null) {
-                String nombre = txtNombre.getText();
-                String apellido = txtApellido.getText();
-                int edad = Integer.parseInt(txtEdad.getText());
-                String nacionalidad = txtNacionalidad.getText();
-                double salario = Double.parseDouble(txtSalario.getText());
-                int numeroComposiciones = Integer.parseInt(txtNumeroComposiciones.getText());
-                Compositor compositor = new Compositor(numeroComposiciones, id, nombre, apellido, edad, nacionalidad, salario);
-                //Disco disco = new Disco(12, "La noche", 2000);
-                //cantante.agregarDisco(disco);
-                controladorCompositor.crearCompositor(compositor); 
-                this.limpiarCampos();
-                JOptionPane.showMessageDialog(this, "Se a creado exitosamente el compositor");
-                System.out.println(controladorCompositor.verCompositores());
-            }else{
-                JOptionPane.showMessageDialog(this, "El ID ya existe");
-            }
-        }else{
-            JOptionPane.showMessageDialog(this,"No estan llenos todos los campos ");
+         if (this.validacionDeCampos()) {
+        int id = Integer.parseInt(txtId.getText());
+        if(controladorCompositor.buscarCompositor(id) == null) {
+            String nombre = txtNombre.getText();
+            String apellido = txtApellido.getText();
+            int edad = Integer.parseInt(txtEdad.getText());
+            String nacionalidad = txtNacionalidad.getText();
+            double salario = Double.parseDouble(txtSalario.getText());
+            int numeroComposiciones = Integer.parseInt(txtNumeroComposiciones.getText());
+            Compositor compositor = new Compositor(numeroComposiciones, id, nombre, apellido, edad, nacionalidad, salario);
+
+            controladorCompositor.crearCompositor(compositor); 
+            this.limpiarCampos();
+            JOptionPane.showMessageDialog(this, "Se ha creado exitosamente el compositor");
+            System.out.println(controladorCompositor.verCompositores());
+        } else {
+            JOptionPane.showMessageDialog(this, "El ID ya existe");
         }
+    } else {
+        JOptionPane.showMessageDialog(this, "No están llenos todos los campos");
+    }
+          btnAceptar.addActionListener(this::btnAceptarActionPerformed);
     }//GEN-LAST:event_btnAceptarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed

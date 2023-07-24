@@ -6,6 +6,7 @@ package ec.edu.ups.nuevapractica.vista.cantante;
 
 import ec.edu.ups.nuevapractica.controlador.ControladorCantante;
 import ec.edu.ups.nuevapractica.modelo.Cantante;
+import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
 
 /**
@@ -14,12 +15,14 @@ import javax.swing.JOptionPane;
  */
 public class CrearCantante extends javax.swing.JInternalFrame {
     private ControladorCantante controladorCantante;
+    private JDesktopPane desktopPane;
     /**
      * Creates new form CrearCantante
      */
     public CrearCantante(ControladorCantante controladorCantante) {
         initComponents();
         this.controladorCantante = controladorCantante;
+         this.desktopPane = desktopPane;
     }
 
     /**

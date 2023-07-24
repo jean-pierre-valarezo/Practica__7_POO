@@ -22,6 +22,7 @@ import ec.edu.ups.nuevapractica.vista.compositor.AgregarCliente;
 import ec.edu.ups.nuevapractica.vista.compositor.BuscarCompositor;
 import ec.edu.ups.nuevapractica.vista.compositor.BuscarPorTitulo;
 import ec.edu.ups.nuevapractica.vista.compositor.CrearCompositor;
+
 import ec.edu.ups.nuevapractica.vista.compositor.EliminarCompositor;
 import ec.edu.ups.nuevapractica.vista.compositor.ListarCompositor;
 import ec.edu.ups.nuevapractica.vista.disco.ActualizarDisco;
@@ -36,13 +37,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private ICantanteDao cantanteDao;
     private ControladorCompositor controladorCompositor;
     private ICompositorDao compositorDao;
+    
 
     private EliminarCantante eliminarCantante;
     private CrearCantante ventanaCrearCantante;
     private BuscarCantante ventanaBuscarCantante;
     private ActualizarCantante actualizarCantante;
     private ListarCantante listarCantante;
-    private CrearCompositor crearCompositor;
+    private CrearCompositor ventanaCrearCompositor;
     private BuscarCompositor buscarCompositor;
     private ActualizarCompositor actualizarCompositor;
     private EliminarCompositor eliminarCompositor;
@@ -60,17 +62,24 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private ListarDisco listarDisco;
     private ListarCancion listarCancion;
     private EliminarDisco eliminarDisco;
+    
+    
+  
     /**
      * Creates new form VentanaPrincipal
      */
     public VentanaPrincipal() {
         initComponents();
+
         cantanteDao = new CantanteDao();
         controladorCantante = new ControladorCantante(cantanteDao);
-        controladorCompositor  = new ControladorCompositor(compositorDao);
-         CrearCompositor crearCompositor = new CrearCompositor(controladorCompositor);
-
-      
+        
+        compositorDao = new CompositorDao();
+        controladorCompositor = new ControladorCompositor(compositorDao);
+        
+        
+        
+ 
     }
 
     /**
@@ -410,15 +419,18 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_itemEliminarCantanteActionPerformed
 
     private void itemCrearCompositorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemCrearCompositorActionPerformed
-        if (crearCompositor == null) {
-            crearCompositor = new CrearCompositor(controladorCompositor);
-            desktopPane.add(crearCompositor);
-        }
-        crearCompositor.setVisible(true);
+        controladorCompositor = new ControladorCompositor(new CompositorDao()); 
+        if (ventanaCrearCompositor == null) { // Verifica si la ventana ya está creada
+        ventanaCrearCompositor = new CrearCompositor(controladorCompositor);
+        desktopPane.add(ventanaCrearCompositor);
+    } else {
+        // Si la ventana ya existe, no es necesario hacer nada adicional
+    }
+    ventanaCrearCompositor.setVisible(true);
     }//GEN-LAST:event_itemCrearCompositorActionPerformed
 
     private void itemBuscarCompositorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemBuscarCompositorActionPerformed
-        if (buscarCompositor == null) {
+         if (buscarCompositor == null) {
             buscarCompositor = new BuscarCompositor(controladorCompositor);
             desktopPane.add(buscarCompositor);
         }
@@ -450,7 +462,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_itemCrearCancionActionPerformed
 
     private void itemActualizarCantanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemActualizarCantanteActionPerformed
-        // TODO add your handling code here:
         if (actualizarCantante == null) {
             actualizarCantante = new ActualizarCantante(controladorCantante);
             desktopPane.add(actualizarCantante);
@@ -469,7 +480,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_itemListarCantanteActionPerformed
 
     private void itemActualizarCompositorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemActualizarCompositorActionPerformed
-        if (actualizarCompositor == null) {
+       if (actualizarCompositor == null) {
             actualizarCompositor = new ActualizarCompositor(controladorCompositor);
             desktopPane.add(actualizarCompositor);
         }
@@ -493,8 +504,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_itemListarCompositorActionPerformed
 
     private void itemCrearDiscoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemCrearDiscoActionPerformed
-        // TODO add your handling code here:
-        if (agregarDisco == null) {
+         if (agregarDisco == null) {
             agregarDisco = new AgregarDisco(controladorCantante);
             desktopPane.add(agregarDisco);
         }
@@ -556,7 +566,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_menuItemAgregarCliemtActionPerformed
 
     private void itemBuscarDiscoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemBuscarDiscoActionPerformed
-        // TODO add your handling code here:
         if (buscarDisco == null) {
             buscarDisco = new BuscarDisco(controladorCantante);
             desktopPane.add(buscarDisco);
@@ -569,11 +578,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_menuItemFrancesActionPerformed
 
     private void menuItemBuscaporDiscoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemBuscaporDiscoActionPerformed
-        if(buscarPorNombreDeDisco== null){
+        if(buscarPorNombreDeDisco == null){
             buscarPorNombreDeDisco = new BuscarPorNombreDeDisco(controladorCantante);
             desktopPane.add(buscarPorNombreDeDisco);
         }
-        //buscarPorNombreDeDisco.cambiarIdioma(localizacion);
         buscarPorNombreDeDisco.setVisible(true);
     }//GEN-LAST:event_menuItemBuscaporDiscoActionPerformed
 
@@ -582,7 +590,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             buscarPorTitulo = new BuscarPorTitulo(controladorCompositor);
             desktopPane.add(buscarPorTitulo);
         }
-        //buscarPorTitulo.cambiarIdioma(localizacion);
         buscarPorTitulo.setVisible(true);
     }//GEN-LAST:event_menuItemBuscarPorTituloActionPerformed
 

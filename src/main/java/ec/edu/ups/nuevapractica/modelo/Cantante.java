@@ -1,9 +1,10 @@
 package ec.edu.ups.nuevapractica.modelo;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Cantante extends Persona { 
+public class Cantante extends Persona implements Serializable { 
 
     private String nombreArtistico;
     private String generoMusical;

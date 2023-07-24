@@ -1,5 +1,6 @@
 package ec.edu.ups.nuevapractica.modelo;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 public class Cancion {
